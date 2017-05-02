@@ -52,16 +52,16 @@ public class Player {
 		return PLAYER_LOSSES;
 	}
 
-	public void setLosses(int pLAYER_LOSSES) {
-		PLAYER_LOSSES = pLAYER_LOSSES;
+	public void setLosses(int losses) {
+		PLAYER_LOSSES = losses;
 	}
 
 	public int getTimeSinceLast() {
 		return TIME_SINCE_LAST_MATCH;
 	}
 
-	public void setTimeSinceLast(int tIME_SINCE_LAST_MATCH) {
-		TIME_SINCE_LAST_MATCH = tIME_SINCE_LAST_MATCH;
+	public void setTimeSinceLast(int time) {
+		TIME_SINCE_LAST_MATCH = time;
 	}
 	
 	
