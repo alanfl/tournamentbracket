@@ -15,7 +15,7 @@ public class Player {
 		setTimeSinceLast(9999);
 	}
 	
-	public Player(int id, String name)
+	public Player(String name, int id)
 	{
 		setID(id);
 		setName(name);
