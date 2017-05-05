@@ -15,8 +15,13 @@ public class TournamentRunner {
 			System.out.print("Enter player's name or FINISH to close registration: ");
 			newName = keyboard.nextLine();
 			if(newName.equals("FINISH"))
-				IS_ADDING_NEW_PLAYERS = false;
+				break;
 			initialPlayerList.add(new Player(newName, initialPlayerList.size()));
+			
+		}
+		
+		for(Player p : initialPlayerList) {
+			System.out.println(p.getName() + ": " + p.getID());
 		}
 		
 		/*NUM_MATCHES = 

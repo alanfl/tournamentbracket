@@ -1,42 +1,42 @@
 
 public class Match {
-	private Player PLAYER_ONE;
-	private Player PLAYER_TWO;
+	private int PLAYER_ONE_ID;
+	private int PLAYER_TWO_ID;
 	private int MATCH_ID;
 	private boolean IS_MATCH_FINISHED;
 	private int WINNER; // Is positive if PLAYER_ONE wins, negative if PLAYER_TWO wins.
 	private String score;
 	
 	public Match() {
-		setPlayerOne(new Player());
-		setPlayerTwo(new Player());
+		setPlayerOne(9999);
+		setPlayerTwo(9999);
 		setID(9999);
 		setWinner(0);
 		setScore("99-99");
 	}
 
-	public void setPlayerOne(Player player) {
-		PLAYER_ONE = player;
+	public void setPlayerOne(int ID) {
+		PLAYER_ONE_ID = ID;
 	}
 	
-	public Player getPlayerOne() {
-		return PLAYER_ONE;
+	public int getPlayerOne() {
+		return PLAYER_ONE_ID;
 	}
 	
-	public void setPlayerTwo(Player player) {
-		PLAYER_TWO = player;
+	public void setPlayerTwo(int ID) {
+		PLAYER_TWO_ID = ID;
 	}
 	
-	public Player getPlayerTwo() {
-		return PLAYER_TWO;
+	public int getPlayerTwo() {
+		return PLAYER_TWO_ID;
 	}
 	
 	public int getID() {
 		return MATCH_ID;
 	}
 	
-	public void setID(int id) {
-		MATCH_ID = id;
+	public void setID(int ID) {
+		MATCH_ID = ID;
 	}
 	
 	public boolean getProgress() {
