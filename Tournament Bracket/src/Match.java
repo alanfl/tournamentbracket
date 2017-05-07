@@ -1,11 +1,19 @@
-
+/**
+ * Alan Luo
+ * Match object for use within Bracket.
+ * Has two booleans that mark characteristics of the match.
+ * These determine whether or not a match is finished and if it's within the winner or loser's bracket.
+ * Match objects are never interacted with directly, all modifying goes through Bracket.
+ * Player objects are never actually used, instead player IDs are used to reference to players.
+ */
 public class Match {
 	private int PLAYER_ONE_ID;
 	private int PLAYER_TWO_ID;
 	private int MATCH_ID;
 	private boolean IS_MATCH_FINISHED;
 	private int WINNER; // Is positive if PLAYER_ONE wins, negative if PLAYER_TWO wins.
-	private String score;
+	private String SCORE;
+	private boolean IS_WINNER;
 	
 	public Match() {
 		setPlayerOne(9999);
@@ -14,6 +22,8 @@ public class Match {
 		setWinner(0);
 		setScore("99-99");
 	}
+	
+	
 
 	public void setPlayerOne(int ID) {
 		PLAYER_ONE_ID = ID;
@@ -56,10 +66,18 @@ public class Match {
 	}
 
 	public String getScore() {
-		return score;
+		return SCORE;
 	}
 
 	public void setScore(String s) {
-		score = s;
+		SCORE = s;
+	}
+
+	public boolean isWinnerLoser() {
+		return IS_WINNER;
+	}
+
+	public void setWinnerLoser(boolean iS_WINNER) {
+		IS_WINNER = iS_WINNER;
 	}
 }

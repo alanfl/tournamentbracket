@@ -1,5 +1,10 @@
 import java.util.ArrayList;
-
+/**
+ * Alan Luo
+ * Bracket object for tournament fundraiser
+ * In short, it contains a list of players and matches.
+ * Upon instantiation it generates matches based on Player objects created from input.
+ */
 public class Bracket {
 	private ArrayList<Player> PLAYER_LIST;
 	private ArrayList<Match> MATCH_LIST;
@@ -35,12 +40,12 @@ public class Bracket {
 		
 		index = 0;
 		for( int i = 0; i < MATCH_LIST.size(); i++ ){
-			
+			MATCH_LIST.get(i).setPlayerOne(PLAYER_LIST.get(index).getID());
 		}
 		
 	}
 	
-	public Player playerByID(int ID) {
+	public Player findPlayer(int ID) {
 		for(Player p : PLAYER_LIST) {
 			if(p.getID() == ID)
 				return p;
@@ -48,7 +53,7 @@ public class Bracket {
 		return null;
 	}
 	
-	public Player playerByName(String name) {
+	public Player findPlayer(String name) {
 		for(Player p : PLAYER_LIST) {
 			if(p.getName().equals(name))
 				return p;
@@ -56,7 +61,7 @@ public class Bracket {
 		return null;
 	}
 	
-	public Match matchByID(int ID) {
+	public Match findMatch(int ID) {
 		for(Match m : MATCH_LIST) {
 			if(m.getID() == ID)
 				return m;
@@ -64,13 +69,20 @@ public class Bracket {
 		return null;
 	}
 	
-	public Match matchByName(String name) {
+	public Match findMatch(String name) {
 		for(Match m : MATCH_LIST) {
-			if(name.equals( playerByID( m.getPlayerOne() ).getName()) || name.equals( playerByID( m.getPlayerOne() ).getName()) )
+			if(name.equals( findPlayer( m.getPlayerOne() ).getName()) || name.equals( findPlayer( m.getPlayerOne() ).getName()) )
 				return m;
 		}
 		return null;
 	}
 	
+	public void setWinner(Match m, int ID) {
+		if(m.getPlayerOne() == ID || m.getPlayerTwo() == ID) {
+			m.setWinner(ID);
+		}
+		else
+			System.out.println("ID not found in match.");
+	}
 	
 }

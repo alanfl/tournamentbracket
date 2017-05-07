@@ -1,4 +1,9 @@
-
+/**
+ * Alan Luo
+ * Player objects for use within Bracket
+ * Fundraiser participants are assigned an ID, this ID will identify which instance is "theirs"
+ * Wins and Losses will determine if they proceed in winner's bracket or loser's bracket.
+ */
 public class Player {
 	private int PLAYER_ID;
 	private String PLAYER_NAME;
@@ -6,8 +11,7 @@ public class Player {
 	private int PLAYER_LOSSES;
 	private int TIME_SINCE_LAST_MATCH;
 	
-	public Player()
-	{
+	public Player() {
 		setID(9999);
 		setName("John Doe");
 		setWins(9999);
@@ -15,8 +19,7 @@ public class Player {
 		setTimeSinceLast(9999);
 	}
 	
-	public Player(String name, int id)
-	{
+	public Player(String name, int id) {
 		setID(id);
 		setName(name);
 		setWins(0);
