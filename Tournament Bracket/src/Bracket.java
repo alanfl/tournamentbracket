@@ -71,7 +71,7 @@ public class Bracket {
 	
 	public Match findMatch(String name) {
 		for(Match m : MATCH_LIST) {
-			if(name.equals( findPlayer( m.getPlayerOne() ).getName()) || name.equals( findPlayer( m.getPlayerOne() ).getName()) )
+			if(name.equals( findPlayer( m.getPlayerOne() ).getName()) || name.equals( findPlayer( m.getPlayerTwo() ).getName()) )
 				return m;
 		}
 		return null;
