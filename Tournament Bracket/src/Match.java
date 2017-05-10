@@ -19,12 +19,17 @@ public class Match {
 		setPlayerOne(9999);
 		setPlayerTwo(9999);
 		setID(9999);
-		setWinner(0);
+		setWinner(9999);
 		setScore("99-99");
 	}
 	
+	public Match(int p1, int p2, int ID) {
+		setPlayerOne(p1);
+		setPlayerTwo(p2);
+		setID(ID);
+		setWinner(9999);
+	}
 	
-
 	public void setPlayerOne(int ID) {
 		PLAYER_ONE_ID = ID;
 	}
@@ -79,5 +84,26 @@ public class Match {
 
 	public void setWinnerLoser(boolean iS_WINNER) {
 		IS_WINNER = iS_WINNER;
+	}
+	
+	public String toString() {
+		String winner;
+		String score;
+		if(getWinner() == 9999) {
+			winner = "TBD";
+			score = "TBD";
+		}
+		else {
+			winner = "" + getWinner();
+			score = getScore();
+		}
+
+		String formatted = ( "Match ID: " + getID() + "\n"
+							+"Player One:" + getPlayerOne() + "\n"
+							+"Player Two:" + getPlayerTwo() + "\n"
+							+"Winner:" + winner +"\n"
+							+"Score:" + score
+							);
+		return formatted;
 	}
 }

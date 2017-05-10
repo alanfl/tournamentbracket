@@ -6,23 +6,41 @@ public class TournamentRunner {
 	public static void main(String[] args) {
 		Scanner keyboard = new Scanner(System.in);
 		Bracket bracket;
-		ArrayList<Match> intialMatchList = new ArrayList<Match>();
 		ArrayList<Player> initialPlayerList = new ArrayList<Player>();
-		boolean IS_ADDING_NEW_PLAYERS = true;
-		
+		boolean IS_RUNNING = true;
 		String newName;
-		while(IS_ADDING_NEW_PLAYERS) {
+		String option;
+		
+		// Initial loop to add players
+		while(IS_RUNNING) {
 			System.out.print("Enter player's name or FINISH to close registration: ");
 			newName = keyboard.nextLine();
 			if(newName.equals("FINISH"))
 				break;
 			initialPlayerList.add(new Player(newName, initialPlayerList.size()));
-			
 		}
 		
-		for(Player p : initialPlayerList) {
-			System.out.println(p.getName() + ": " + p.getID());
+		bracket = new Bracket(initialPlayerList);
+		
+		// Main loop - runs commands
+		while(IS_RUNNING) {
+			System.out.println("1 - Print all matches");
+			System.out.println("2 - Print all players");
+			System.out.println("3 - ");
+			System.out.print("Command: ");
+			option = keyboard.next();
+			keyboard.nextLine();
+			
+			switch(option) {
+				case "1" :
+					bracket.printAllMatches();
+				case "2" :
+			}
 		}
+		
+	
+		
+		
 		
 		/*NUM_MATCHES = 
 		

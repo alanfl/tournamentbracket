@@ -14,7 +14,7 @@ public class Bracket {
 		MATCH_LIST = new ArrayList<Match>();
 	}
 	
-	public Bracket(ArrayList<Player> playerList, ArrayList<Match> matchList) {
+	public Bracket(ArrayList<Player> playerList) {
 		PLAYER_LIST = playerList;
 		generateMatches();
 	}
@@ -29,6 +29,9 @@ public class Bracket {
 	public void generateMatches() {
 		Player temp;
 		int index;
+		int max = 0;
+		int n = 0;
+		
 		// Random sort
 		for(int i = 0; i < PLAYER_LIST.size(); i++) {
 			index = (int) (Math.random() * PLAYER_LIST.size());
@@ -37,7 +40,14 @@ public class Bracket {
 			PLAYER_LIST.set(index, temp);	
 		}
 		
-		// Generates matches
+		// Determine first round size
+		while(max < PLAYER_LIST.size()) {
+			max = (int) Math.pow(2, n);
+		}
+		
+		int byes = max - PLAYER_LIST.size();
+		
+		// Fills matches
 		index = 0;
 		for( int i = 0; i < MATCH_LIST.size(); i++ ){
 			MATCH_LIST.get(i).setPlayerOne(PLAYER_LIST.get(index).getID());
@@ -85,5 +95,9 @@ public class Bracket {
 			System.out.println("ID not found in match.");
 	}
 	
-	
+	public void printAllMatches() {
+		for(Match m : MATCH_LIST) {
+			System.out.println(m);
+		}
+	}
 }

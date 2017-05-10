@@ -67,5 +67,12 @@ public class Player {
 		TIME_SINCE_LAST_MATCH = time;
 	}
 	
+	public String toString() {
+		String formatted = ( "ID: " + getID() + "\n"
+							+"Name: " + getName() + "\n"
+							+"Score: " + getWins() + "-" +getLosses()
+							);
+		return formatted;
+	}
 	
 }
