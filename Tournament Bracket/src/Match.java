@@ -102,7 +102,7 @@ public class Match {
 							+"Player One:" + getPlayerOne() + "\n"
 							+"Player Two:" + getPlayerTwo() + "\n"
 							+"Winner:" + winner +"\n"
-							+"Score:" + score
+							+"Score:" + score + "\n"
 							);
 		return formatted;
 	}

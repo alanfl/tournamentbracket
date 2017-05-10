@@ -19,17 +19,27 @@ public class Bracket {
 		generateMatches();
 	}
 	
-	public void getPlayerNames() {
+	/**
+	 * Prints out all player names as opposed to player toString
+	 */
+	public void printPlayerNames() {
 		for(Player p : PLAYER_LIST){
 			System.out.println(p.getName());
 		}
 	}
 	
-	// TO-DO
+	/**
+	 * TO-DO
+	 * 1. Randomize order of PLAYER_LIST. - DONE
+	 * 2. Determine total number of matches in bracket (winners and losers combined).
+	 * 3. Determine number of matches in first round.
+	 * 4. Determine number of byes in first round.
+	 */
 	public void generateMatches() {
 		Player temp;
-		int index;
-		int max = 0;
+		int index; // For random sort
+		int matches = 0; // Number of total matches
+		int byes = 0; // Number of byes in first round
 		int n = 0;
 		
 		// Random sort
@@ -40,17 +50,21 @@ public class Bracket {
 			PLAYER_LIST.set(index, temp);	
 		}
 		
+		//Determine total matches
+		
+		
+		
 		// Determine first round size
-		while(max < PLAYER_LIST.size()) {
-			max = (int) Math.pow(2, n);
-		}
+	
 		
-		int byes = max - PLAYER_LIST.size();
 		
-		// Fills matches
+		// Fills matches...may not need yet
 		index = 0;
-		for( int i = 0; i < MATCH_LIST.size(); i++ ){
+		for( int i = 0; i < matches - byes; i++ ){
 			MATCH_LIST.get(i).setPlayerOne(PLAYER_LIST.get(index).getID());
+			index++;
+			MATCH_LIST.get(i).setPlayerTwo(PLAYER_LIST.get(index).getID());
+			index++;
 		}
 		
 	}

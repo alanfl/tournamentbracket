@@ -70,7 +70,7 @@ public class Player {
 	public String toString() {
 		String formatted = ( "ID: " + getID() + "\n"
 							+"Name: " + getName() + "\n"
-							+"Score: " + getWins() + "-" +getLosses()
+							+"Score: " + getWins() + "-" +getLosses() + "\n"
 							);
 		return formatted;
 	}
