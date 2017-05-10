@@ -37,7 +37,7 @@ public class Bracket {
 			PLAYER_LIST.set(index, temp);	
 		}
 		
-		
+		// Generates matches
 		index = 0;
 		for( int i = 0; i < MATCH_LIST.size(); i++ ){
 			MATCH_LIST.get(i).setPlayerOne(PLAYER_LIST.get(index).getID());
