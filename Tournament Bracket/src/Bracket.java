@@ -7,7 +7,7 @@ import java.util.ArrayList;
  */
 public class Bracket {
 	private ArrayList<Player> PLAYER_LIST;
-	private ArrayList<Match> MATCH_LIST;
+	private ArrayList<Match> MATCH_LIST = new ArrayList<Match>();
 	
 	public Bracket() {
 		PLAYER_LIST = new ArrayList<Player>();
@@ -20,27 +20,19 @@ public class Bracket {
 	}
 	
 	/**
-	 * Prints out all player names as opposed to player toString
-	 */
-	public void printPlayerNames() {
-		for(Player p : PLAYER_LIST){
-			System.out.println(p.getName());
-		}
-	}
-	
-	/**
 	 * TO-DO
 	 * 1. Randomize order of PLAYER_LIST. - DONE
 	 * 2. Determine total number of matches in bracket (winners and losers combined).
 	 * 3. Determine number of matches in first round.
 	 * 4. Determine number of byes in first round.
 	 */
-	public void generateMatches() {
+	private void generateMatches() {
 		Player temp;
 		int index; // For random sort
 		int matches = 0; // Number of total matches
 		int byes = 0; // Number of byes in first round
 		int n = 0;
+		int first = 0;
 		
 		// Random sort
 		for(int i = 0; i < PLAYER_LIST.size(); i++) {
@@ -50,23 +42,52 @@ public class Bracket {
 			PLAYER_LIST.set(index, temp);	
 		}
 		
-		//Determine total matches
+		// DEBUG
+		for(Player p : PLAYER_LIST) {
+			System.out.println(p);
+		}
 		
+		// Determine total matches
+		matches = (2 * PLAYER_LIST.size()) - 1;
 		
+		// Set MATCH_LIST to appropriate size
+		for(int i = 0; i < matches; i++) {
+			MATCH_LIST.add( new Match(i + 1) );
+		}
 		
 		// Determine first round size
-	
+		first = numFirstRound(PLAYER_LIST.size());
 		
-		
-		// Fills matches...may not need yet
+		// Fills first round matches
 		index = 0;
-		for( int i = 0; i < matches - byes; i++ ){
+		for( int i = 0; i < first; i++ ) {
 			MATCH_LIST.get(i).setPlayerOne(PLAYER_LIST.get(index).getID());
-			index++;
-			MATCH_LIST.get(i).setPlayerTwo(PLAYER_LIST.get(index).getID());
 			index++;
 		}
 		
+		for( int i = 0; i < first; i++ ) {
+			if(index < PLAYER_LIST.size()) {
+				MATCH_LIST.get(i).setPlayerTwo(PLAYER_LIST.get(index).getID());
+				index++;
+			}
+			else {
+				MATCH_LIST.get(i).setPlayerTwo(9999);
+			}
+		}
+		
+		// DEBUG
+		for(Match m:MATCH_LIST) {
+			System.out.println(m);
+		}
+	}
+	
+	/**
+	 * Prints out all player names as opposed to player toString
+	 */
+	public void printPlayerNames() {
+		for(Player p : PLAYER_LIST){
+			System.out.println(p.getName());
+		}
 	}
 	
 	public Player findPlayer(int ID) {
@@ -87,7 +108,7 @@ public class Bracket {
 	
 	public Match findMatch(int ID) {
 		for(Match m : MATCH_LIST) {
-			if(m.getID() == ID)
+			if(m.id() == ID)
 				return m;
 		}
 		return null;
@@ -95,14 +116,23 @@ public class Bracket {
 	
 	public Match findMatch(String name) {
 		for(Match m : MATCH_LIST) {
-			if(name.equals( findPlayer( m.getPlayerOne() ).getName()) || name.equals( findPlayer( m.getPlayerTwo() ).getName()) )
+			if(name.equals( findPlayer( m.playerOne() ).getName()) || name.equals( findPlayer( m.playerTwo() ).getName()) )
 				return m;
 		}
 		return null;
 	}
 	
+	public String printAllPlayerMatches(int ID) {
+		String toReturn = "";
+		for(Match m : MATCH_LIST) {
+			if(ID == m.playerOne() || ID == m.playerTwo())
+				toReturn += m + "\n";
+		}
+		return toReturn;
+	}
+	
 	public void setWinner(Match m, int ID) {
-		if(m.getPlayerOne() == ID || m.getPlayerTwo() == ID) {
+		if(m.playerOne() == ID || m.playerTwo() == ID) {
 			m.setWinner(ID);
 		}
 		else
@@ -114,4 +144,29 @@ public class Bracket {
 			System.out.println(m);
 		}
 	}
+	
+	public int matchNum() { 
+		return MATCH_LIST.size();
+	}
+	
+	public int playerNum() {
+		return PLAYER_LIST.size();
+	}
+	
+	private int smallestNum(int numPlayers) {
+		int num  = 1; // num = 2^n
+		while(num < numPlayers) {
+			num *= 2;
+		}
+		return num;
+	}
+	
+	private int byes(int numPlayers) {
+		return (smallestNum(numPlayers) - numPlayers);
+	}
+	
+	private int numFirstRound(int numPlayers) {
+		return (numPlayers + byes(numPlayers))/2;
+	}
+	
 }

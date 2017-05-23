@@ -15,26 +15,16 @@ public class Match {
 	private String SCORE;
 	private boolean IS_WINNER;
 	
-	public Match() {
-		setPlayerOne(9999);
-		setPlayerTwo(9999);
-		setID(9999);
-		setWinner(9999);
-		setScore("99-99");
-	}
-	
-	public Match(int p1, int p2, int ID) {
-		setPlayerOne(p1);
-		setPlayerTwo(p2);
-		setID(ID);
-		setWinner(9999);
+	public Match(int ID) {
+		MATCH_ID = ID;
+		setScore("0-0");
 	}
 	
 	public void setPlayerOne(int ID) {
 		PLAYER_ONE_ID = ID;
 	}
 	
-	public int getPlayerOne() {
+	public int playerOne() {
 		return PLAYER_ONE_ID;
 	}
 	
@@ -42,11 +32,11 @@ public class Match {
 		PLAYER_TWO_ID = ID;
 	}
 	
-	public int getPlayerTwo() {
+	public int playerTwo() {
 		return PLAYER_TWO_ID;
 	}
 	
-	public int getID() {
+	public int id() {
 		return MATCH_ID;
 	}
 	
@@ -54,15 +44,15 @@ public class Match {
 		MATCH_ID = ID;
 	}
 	
-	public boolean getProgress() {
+	public boolean isFinished() {
 		return IS_MATCH_FINISHED;
 	}
 	
-	public void setProgress(boolean status) {
+	public void setIsFinished(boolean status) {
 		IS_MATCH_FINISHED = status;
 	}
 
-	public int getWinner() {
+	public int winner() {
 		return WINNER;
 	}
 
@@ -70,7 +60,7 @@ public class Match {
 		WINNER = w;
 	}
 
-	public String getScore() {
+	public String score() {
 		return SCORE;
 	}
 
@@ -82,27 +72,23 @@ public class Match {
 		return IS_WINNER;
 	}
 
-	public void setWinnerLoser(boolean iS_WINNER) {
-		IS_WINNER = iS_WINNER;
-	}
-	
 	public String toString() {
 		String winner;
 		String score;
-		if(getWinner() == 9999) {
+		if(winner() == 9999) {
 			winner = "TBD";
 			score = "TBD";
 		}
 		else {
-			winner = "" + getWinner();
-			score = getScore();
+			winner = "" + winner();
+			score = score();
 		}
 
-		String formatted = ( "Match ID: " + getID() + "\n"
-							+"Player One:" + getPlayerOne() + "\n"
-							+"Player Two:" + getPlayerTwo() + "\n"
-							+"Winner:" + winner +"\n"
-							+"Score:" + score + "\n"
+		String formatted = ( "Match ID: " + MATCH_ID + "\n"
+							+"Player One:" + PLAYER_ONE_ID + "\n"
+							+"Player Two:" + PLAYER_TWO_ID + "\n"
+							+"Winner:" + WINNER +"\n"
+							+"Score:" + SCORE + "\n"
 							);
 		return formatted;
 	}
